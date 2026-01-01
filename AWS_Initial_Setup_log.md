@@ -83,12 +83,12 @@
 
 - 정상적으로 권한이 부여되었는지 확인.
 
- + aws sts get-caller-identity
+    + aws sts get-caller-identity
 
 
 - [출력 결과 예시]
 
- + {
+    + {
     "UserId": "[HIDDEN]",
     "Account": "[HIDDEN]",
     "Arn": "arn:aws:iam::[HIDDEN]"
