@@ -1,6 +1,5 @@
 # AWS 환경 구축 및 보안 설정 로그 (Initial Setup)
 
---
 
 ## 목적: AWS Root 계정 보안 강화, 작업용 IAM 사용자 생성 및 CLI 로컬 환경 구축 완료
 
@@ -68,7 +67,7 @@ Permission: AdministratorAccess 정책(Policy)이 연결된 AdminGroup 생성 �
 - 설치 확인:
 
 aws --version
-# 결과: aws-cli/2.x.x Python/3.x.x ...
+결과: aws-cli/2.32.26 Python/3.13.11 Windows/10 exe/AMD64
 
 
 ### 4.2 프로필 연동 (Configure)
@@ -76,10 +75,10 @@ aws --version
 - IAM에서 발급받은 Access Key ID와 Secret Access Key를 로컬 환경에 등록.
 
 - aws configure
-# AWS Access Key ID: [HIDDEN]
-# AWS Secret Access Key: [HIDDEN]
-# Default region name: ap-northeast-2
-# Default output format: json
+AWS Access Key ID: [HIDDEN]
+AWS Secret Access Key: [HIDDEN]
+Default region name: ap-northeast-2
+Default output format: json
 
 
 ## 4.3 연결 테스트
@@ -92,10 +91,11 @@ aws sts get-caller-identity
 [출력 결과 예시]
 
 {
-    "UserId": "AIDAZ...",
-    "Account": "123456789012",
-    "Arn": "arn:aws:iam::123456789012:user/admin-user"
+    "UserId": "[HIDDEN]",
+    "Account": "[HIDDEN]",
+    "Arn": "arn:aws:iam::[HIDDEN]"
 }
+
 
 ---
 ## 5. 트러블 슈팅 (Troubleshooting)
