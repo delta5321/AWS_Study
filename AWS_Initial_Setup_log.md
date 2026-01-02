@@ -1,7 +1,6 @@
 # AWS 환경 구축 및 보안 설정 로그 (Initial Setup)
 
-
-## 목적: AWS Root 계정 보안 강화, 작업용 IAM 사용자 생성 및 CLI 로컬 환경 구축 완료
+#### 목적: AWS Root 계정 보안 강화, 작업용 IAM 사용자 생성 및 CLI 로컬 환경 구축 완료
 
 ## 1. 계정 생성 및 리전 설정
 
@@ -13,7 +12,7 @@
 
 - 이유: 물리적 거리가 가장 가까워 네트워크 지연(Latency) 최소화 및 실습 효율 증대.
 
----
+
 ## 2. 보안 조치 (Security Baseline)
 
 ### 2.1 Root 계정 MFA(Multi-Factor Authentication) 설정
@@ -42,7 +41,7 @@
 
     + 월 지출이 $0.01(약 10원)를 초과할 경우 이메일 경보 발송 설정.
 
----
+
 ## 3. 작업용 사용자(IAM User) 생성
 
 ### 3.1 Admin 계정 생성
@@ -50,12 +49,12 @@
 - 원칙: '루트 계정 사용 금지' 보안 원칙 준수. 일상적인 작업은 별도 IAM 사용자로 수행.
 
 - 조치 내용:
+```
+    User Name: admin
+    Access Type: Management Console(웹) 및 Programmatic Access(CLI) 모두 허용.
+    Permission: AdministratorAccess 정책(Policy)이 연결된 AdminGroup 생성 및 할당.
+```
 
-    + User Name: admin-user
-    + Access Type: Management Console(웹) 및 Programmatic Access(CLI) 모두 허용.
-    + Permission: AdministratorAccess 정책(Policy)이 연결된 AdminGroup 생성 및 할당.
-
----
 ## 4. 로컬 CLI(Command Line Interface) 환경 구축
 
 ### 4.1 AWS CLI v2 설치
@@ -63,21 +62,22 @@
 - 목적: 웹 콘솔(GUI) 의존도를 낮추고 인프라 관리 자동화(IaC) 준비.
 
 - 설치 확인:
-
-    + aws --version
-    + 결과: aws-cli/2.32.26 Python/3.13.11 Windows/10 exe/AMD64
-
+```
+    aws --version
+    aws-cli/2.32.26 Python/3.13.11 Windows/10 exe/AMD64
+```
 
 ### 4.2 프로필 연동 (Configure)
 
 - IAM에서 발급받은 Access Key ID와 Secret Access Key를 로컬 환경에 등록.
 
-- aws configure
-    + AWS Access Key ID: [HIDDEN]
-    + AWS Secret Access Key: [HIDDEN]
-    + Default region name: ap-northeast-2
-    + Default output format: json
-
+```
+    aws configure
+    AWS Access Key ID: [HIDDEN]
+    AWS Secret Access Key: [HIDDEN]
+    Default region name: ap-northeast-2
+    Default output format: json
+```
 
 ## 4.3 연결 테스트
 
@@ -87,14 +87,13 @@
 
 
 - [출력 결과 예시]
-
-    + {
+```
+    {
     "UserId": "[HIDDEN]",
     "Account": "[HIDDEN]",
     "Arn": "arn:aws:iam::[HIDDEN]"
-}
-
-
+    }
+```
 ---
 ## 5. 트러블 슈팅 (Troubleshooting)
 
@@ -104,7 +103,7 @@
 
  - 원인 분석:
     + IAM User에게 AdministratorAccess 권한 누락 (1차 원인).
-    결제 카드가 만료되어 AWS 측에서 계정을 임시 차단 (2차 원인).
+    + 결제 카드가 만료되어 AWS 측에서 계정을 임시 차단 (2차 원인).
 
  - 해결 과정:
     + Root 계정으로 로그인하여 admin-user에게 관리자 권한 부여.
