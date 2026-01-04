@@ -16,7 +16,7 @@
 
  - 조치:
 
-    * 사용자명: admin-user
+    * 사용자명: admin
 
     * 권한: AdministratorAccess 정책 부여.
 
